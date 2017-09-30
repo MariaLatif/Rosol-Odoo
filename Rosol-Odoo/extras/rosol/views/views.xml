@@ -1,0 +1,69 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="rosol.form">
+            <field name="name">Rosol Form View</field>
+            <field name="model">rosol.rosol</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="age"/>
+                            <field name="ssn"/>
+                        </group>
+                    </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                </form>
+            </field>
+        </record>
+
+        <!--explicit list view definition-->
+        <record model="ir.ui.view" id="rosol.list">
+            <field name="name">Rosol Tree View</field>
+            <field name="model">rosol.rosol</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="ssn"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--actions opening views on models-->
+        <record model="ir.actions.act_window" id="rosol.action_window">
+            <field name="name">Rosol Window</field>
+            <field name="res_model">rosol.rosol</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- server action to the one above -->
+        <!--<record model="ir.actions.server" id="rosol.action_server">-->
+        <!--<field name="name">rosol server</field>-->
+        <!--<field name="model_id" ref="model_rosol_rosol"/>-->
+        <!--<field name="code">-->
+        <!--action = {-->
+        <!--"type": "ir.actions.act_window",-->
+        <!--"view_mode": "tree,form",-->
+        <!--"res_model": self._name,-->
+        <!--}-->
+        <!--</field>-->
+        <!--</record>-->
+
+        <!-- Top menu item -->
+        <menuitem name="Rosol Family" id="rosol.menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="Menu 1" id="rosol.menu_1" parent="rosol.menu_root"/>
+        <menuitem name="Menu 2" id="rosol.menu_2" parent="rosol.menu_root"/>
+        <!-- actions -->
+
+        <menuitem name="List" id="rosol.menu_1_list" parent="rosol.menu_1"
+                  action="rosol.action_window"/>
+        <!--
+        <menuitem name="Server to list" id="rosol" parent="rosol.menu_2"
+                  action="rosol.action_server"/>-->
+    </data>
+</odoo>
